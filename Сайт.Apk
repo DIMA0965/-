@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML | Вход в Roblox Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0b0c1e, #020210);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(5, 5, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f0b90b30;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffd966, #f0b90b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .welcome-box {
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .welcome-box h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-box h1 span {
+            color: #f0b90b;
+            text-shadow: 0 0 15px #f0b90b80;
+        }
+
+        .auth-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 30px;
+        }
+
+        .auth-card {
+            background: #11122b;
+            padding: 30px;
+            border-radius: 30px;
+            width: 350px;
+            border: 1px solid #2a2c4a;
+        }
+
+        .auth-card h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #f0b90b;
+        }
+
+        .auth-card input {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background: #1e1f33;
+            border: 1px solid #2a2c4a;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .auth-card input:focus {
+            border-color: #f0b90b;
+        }
+
+        .auth-card button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            background: #f0b90b;
+            color: #0b0c1e;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .auth-card button:hover {
+            background: #ffd966;
+            box-shadow: 0 0 20px #f0b90b;
+        }
+
+        .auth-note {
+            text-align: center;
+            margin-top: 15px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .info-message {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: #1e1f3340;
+            border-radius: 50px;
+            color: #f0b90b;
+            border: 1px dashed #f0b90b;
+        }
+
+        /* Блок с ПК-скриптами для APK */
+        .pc-scripts-section {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #f0b90b;
+            text-shadow: 0 0 10px #f0b90b60;
+        }
+
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .script-card {
+            background: #11122b;
+            border-radius: 25px;
+            padding: 25px;
+            border: 1px solid #2a2c4a;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .script-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #f0b90b, #ffd966);
+        }
+
+        .script-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(240, 185, 11, 0.2);
+            border-color: #f0b90b;
+        }
+
+        .script-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .script-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f0b90b, #ff9900);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #0b0c1e;
+        }
+
+        .script-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f0b90b;
+        }
+
+        .script-details {
+            background: #1a1b33;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        .script-details p {
+            margin: 8px 0;
+            color: #aaa;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .script-details span {
+            color: #f0b90b;
+            font-weight: 600;
+        }
+
+        .script-description {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 15px 0;
+            padding: 10px;
+            background: #1e1f3340;
+            border-radius: 10px;
+            border-left: 3px solid #f0b90b;
+        }
+
+        .script-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .script-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .download-script {
+            background: #f0b90b;
+            color: #0b0c1e;
+        }
+
+        .download-script:hover {
+            background: #ffd966;
+            box-shadow: 0 0 15px #f0b90b;
+        }
+
+        .info-script {
+            background: #2a2c4a;
+            color: #fff;
+        }
+
+        .info-script:hover {
+            background: #3a3c5a;
+        }
+
+        .script-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f0b90b20;
+            color: #f0b90b;
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+            border: 1px solid #f0b90b40;
+        }
+
+        footer {
+            background: #040411;
+            padding: 20px 60px;
+            border-top: 1px solid #f0b90b20;
+            text-align: center;
+            color: #666;
+            margin-top: 40px;
+        }
+
+        /* Модальное окно для информации */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #11122b;
+            padding: 30px;
+            border-radius: 30px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid #f0b90b;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #f0b90b;
+        }
+
+        .modal-title {
+            color: #f0b90b;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .modal-text {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-code {
+            background: #1a1b33;
+            padding: 15px;
+            border-radius: 15px;
+            color: #f0b90b;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            border: 1px solid #2a2c4a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ML // ROBLOX</div>
+    </header>
+
+    <div class="main-content">
+        <div class="welcome-box">
+            <h1>Войди в <span>ML</span> вселенную</h1>
+            <p>После входа ты попадешь в игровое меню <strong>99 ночей в лесу 3D</strong></p>
+        </div>
+
+        <section class="auth-section">
+            <!-- Регистрация -->
+            <div class="auth-card">
+                <h2>🔐 Регистрация</h2>
+                <input type="text" placeholder="Придумай логин" id="reg-login">
+                <input type="password" placeholder="Придумай пароль" id="reg-pass">
+                <button id="register-btn">Зарегистрироваться</button>
+                <div class="auth-note">После регистрации сразу войди</div>
+            </div>
+
+            <!-- Вход -->
+            <div class="auth-card">
+                <h2>🔑 Вход</h2>
+                <input type="text" placeholder="Твой логин" id="login-login">
+                <input type="password" placeholder="Твой пароль" id="login-pass">
+                <button id="login-btn">Войти в меню</button>
+                <div class="auth-note">Вход в игровой центр</div>
+            </div>
+        </section>
+
+        <!-- ПК-скрипты для APK -->
+        <div class="pc-scripts-section">
+            <h2 class="section-title">⚡ ПК-скрипты для APK</h2>
+            <div class="scripts-grid">
+                <!-- Склад 1 -->
+                <div class="script-card">
+                    <div class="script-badge">NEW</div>
+                    <div class="script-header">
+                        <div class="script-icon">📦</div>
+                        <div class="script-title">APK Packer v2.1</div>
+                    </div>
+                    <div class="script-details">
+                        <p><span>Размер:</span> 4.2 МБ</p>
+                        <p><span>Версия:</span> 2.1.0</p>
+                        <p><span>Формат:</span> .bat + .ps1</p>
+                    </div>
+                    <div class="script-description">
+                        Пакетный скрипт для автоматической сборки APK из исходников. Поддерживает подпись и оптимизацию.
+                    </div>
+                    <div class="script-actions">
+                        <button class="script-btn download-script" onclick="downloadScript('apk_packer')">📥 Скачать</button>
+                        <button class="script-btn info-script" onclick="showInfo('apk_packer')">ℹ️ Инфо</button>
+                    </div>
+                </div>
+
+                <!-- Склад 2 -->
+                <div class="script-card">
+                    <div class="script-header">
+                        <div class="script-icon">🛠️</div>
+                        <div class="script-title">APK Modder</div>
+                    </div>
+                    <div class="script-details">
+                        <p><span>Размер:</span> 6.7 МБ</p>
+                        <p><span>Версия:</span> 1.5.3</p>
+                        <p><span>Формат:</span> .exe + .dll</p>
+                    </div>
+                    <div class="script-description">
+                        Инструмент для модификации существующих APK. Замена ресурсов, патчинг кода, подпись.
+                    </div>
+                    <div class="script-actions">
+                        <button class="script-btn download-script" onclick="downloadScript('apk_modder')">📥 Скачать</button>
+                        <button class="script-btn info-script" onclick="showInfo('apk_modder')">ℹ️ Инфо</button>
+                    </div>
+                </div>
+
+                <!-- Склад 3 -->
+                <div class="script-card">
+                    <div class="script-header">
+                        <div class="script-icon">🔧</div>
+                        <div class="script-title">APK Decompiler</div>
+                    </div>
+                    <div class="script-details">
+                        <p><span>Размер:</span> 8.1 МБ</p>
+                        <p><span>Версия:</span> 3.0.2</p>
+                        <p><span>Формат:</span> .jar + .py</p>
+                    </div>
+                    <div class="script-description">
+                        Декомпилятор APK в исходный код. Поддерживает Java и Kotlin. Автоматическая очистка.
+                    </div>
+                    <div class="script-actions">
+                        <button class="script-btn download-script" onclick="downloadScript('apk_decompiler')">📥 Скачать</button>
+                        <button class="script-btn info-script" onclick="showInfo('apk_decompiler')">ℹ️ Инфо</button>
+                    </div>
+                </div>
+
+                <!-- Склад 4 -->
+                <div class="script-card">
+                    <div class="script-badge">HOT</div>
+                    <div class="script-header">
+                        <div class="script-icon">⚙️</div>
+                        <div class="script-title">APK Optimizer</div>
+                    </div>
+                    <div class="script-details">
+                        <p><span>Размер:</span> 3.5 МБ</p>
+                        <p><span>Версия:</span> 2.0.1</p>
+                        <p><span>Формат:</span> .sh + .bat</p>
+                    </div>
+                    <div class="script-description">
+                        Оптимизация APK: сжатие ресурсов, удаление мусора, zipalign и подпись одной командой.
+                    </div>
+                    <div class="script-actions">
+                        <button class="script-btn download-script" onclick="downloadScript('apk_optimizer')">📥 Скачать</button>
+                        <button class="script-btn info-script" onclick="showInfo('apk_optimizer')">ℹ️ Инфо</button>
+                    </div>
+                </div>
+
+                <!-- Склад 5 -->
+                <div class="script-card">
+                    <div class="script-header">
+                        <div class="script-icon">🔐</div>
+                        <div class="script-title">APK Signer</div>
+                    </div>
+                    <div class="script-details">
+                        <p><span>Размер:</span> 2.1 МБ</p>
+                        <p><span>Версия:</span> 1.2.0</p>
+                        <p><span>Формат:</span> .py + .key</p>
+                    </div>
+                    <div class="script-description">
+                        Утилита для подписи APK разными ключами. Поддержка v1, v2, v3 подписи.
+                    </div>
+                    <div class="script-actions">
+                        <button class="script-btn download-script" onclick="downloadScript('apk_signer')">📥 Скачать</button>
+                        <button class="script-btn info-script" onclick="showInfo('apk_signer')">ℹ️ Инфо</button>
+                    </div>
+                </div>
+
+                <!-- Склад 6 -->
+                <div class="script-card">
+                    <div class="script-header">
+                        <div class="script-icon">📱</div>
+                        <div class="script-title">APK Installer</div>
+                    </div>
+                    <div class="script-details">
+                        <p><span>Размер:</span> 1.8 МБ</p>
+                        <p><span>Версия:</span> 4.0.0</p>
+                        <p><span>Формат:</span> .cmd + .vbs</p>
+                    </div>
+                    <div class="script-description">
+                        Скрипт для массовой установки APK на устройства через ADB. Поддержка множества устройств.
+                    </div>
+                    <div class="script-actions">
+                        <button class="script-btn download-script" onclick="downloadScript('apk_installer')">📥 Скачать</button>
+                        <button class="script-btn info-script" onclick="showInfo('apk_installer')">ℹ️ Инфо</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-message" id="info-message">
+            👆 Войди, чтобы открыть 99 ночей в лесу 3D
+        </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div class="modal" id="infoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <div class="modal-text" id="modalText"></div>
+            <div class="modal-code" id="modalCode"></div>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 ML Community · Неофициальный фан-сайт
+    </footer>
+
+    <script>
+        (function() {
+            // Работаем с localStorage
+            const STORAGE_KEY = 'ml_users';
+            
+            function getUsers() {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            }
+
+            // Кнопка регистрации
+            document.getElementById('register-btn').addEventListener('click', function() {
+                const login = document.getElementById('reg-login').value.trim();
+                const pass = document.getElementById('reg-pass').value.trim();
+
+                if (!login || !pass) {
+                    alert('❌ Заполни все поля');
+                    return;
+                }
+                if (login.length < 3) {
+                    alert('❌ Логин минимум 3 символа');
+                    return;
+                }
+                if (pass.length < 4) {
+                    alert('❌ Пароль минимум 4 символа');
+                    return;
+                }
+
+                const users = getUsers();
+                if (users[login]) {
+                    alert('❌ Такой логин уже есть');
+                    return;
+                }
+
+                users[login] = pass;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+                alert('✅ Регистрация успешна! Теперь войди.');
+                document.getElementById('reg-login').value = '';
+                document.getElementById('reg-pass').value = '';
+            });
+
+            // Кнопка входа
+            document.getElementById('login-btn').addEventListener('click', function() {
+                const login = document.getElementById('login-login').value.trim();
+                const pass = document.getElementById('login-pass').value.trim();
+
+                if (!login || !pass) {
+                    alert('❌ Введи логин и пароль');
+                    return;
+                }
+
+                const users = getUsers();
+                if (!users[login]) {
+                    alert('❌ Пользователь не найден');
+                    return;
+                }
+                if (users[login] !== pass) {
+                    alert('❌ Неверный пароль');
+                    return;
+                }
+
+                localStorage.setItem('ml_current_user', login);
+                document.getElementById('info-message').innerText = '✅ Вход выполнен! Перенаправляем в меню...';
+                
+                setTimeout(() => {
+                    window.location.href = 'загрузки/menu.html';
+                }, 1000);
+            });
+
+            // Проверка сессии
+            const currentUser = localStorage.getItem('ml_current_user');
+            if (currentUser) {
+                document.getElementById('info-message').innerHTML = `👋 С возвращением, ${currentUser}! <a href="загрузки/menu.html" style="color: #f0b90b;">Перейти в меню →</a>`;
+            }
+        })();
+
+        // Функции для скриптов
+        function downloadScript(scriptName) {
+            const scripts = {
+                apk_packer: 'apk_packer_v2.1.zip',
+                apk_modder: 'apk_modder_v1.5.3.zip',
+                apk_decompiler: 'apk_decompiler_v3.0.2.zip',
+                apk_optimizer: 'apk_optimizer_v2.0.1.zip',
+                apk_signer: 'apk_signer_v1.2.0.zip',
+                apk_installer: 'apk_installer_v4.0.0.zip'
+            };
+            
+            // Создаем ссылку для скачивания
+            const link = document.createElement('a');
+            link.href = `загрузки/scripts/${scripts[scriptName]}`;
+            link.download = scripts[scriptName];
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert(`📥 Скачивание ${scripts[scriptName]} началось!`);
+        }
+
+        function showInfo(scriptName) {
+            const modal = document.getElementById('infoModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalText = document.getElementById('modalText');
+            const modalCode = document.getElementById('modalCode');
+            
+            const info = {
+                apk_packer: {
+                    title: 'APK Packer v2.1',
+                    text: 'Пакетный скрипт для автоматической сборки APK из исходников. Поддерживает:',
+                    code: 'Основные функции:\n' +
+                          '- Автоматическая компиляция\n' +
+                          '- Подпись APK\n' +
+                          '- Оптимизация ресурсов\n' +
+                          '- Сжатие изображений\n' +
+                          'Использование: packer.bat [source_folder] [output_name]'
+                },
+                apk_modder: {
+                    title: 'APK Modder v1.5.3',
+                    text: 'Инструмент для модификации существующих APK:',
+                    code: 'Возможности:\n' +
+                          '- Замена ресурсов\n' +
+                          '- Патчинг кода\n' +
+                          '- Добавление библиотек\n' +
+                          '- Переподпись\n' +
+                          'Пример: modder.exe -i app.apk -o modded.apk'
+                },
+                apk_decompiler: {
+                    title: 'APK Decompiler v3.0.2',
+                    text: 'Декомпилятор APK в исходный код:',
+                    code: 'Поддерживаемые форматы:\n' +
+                          '- Java\n' +
+                          '- Kotlin\n' +
+                          '- Smali\n' +
+                          'Команда: java -jar decompiler.jar app.apk'
+                },
+                apk_optimizer: {
+                    title: 'APK Optimizer v2.0.1',
+                    text: 'Оптимизация APK для уменьшения размера:',
+                    code: 'Оптимизации:\n' +
+                          '- Сжатие PNG/JPEG\n' +
+                          '- Удаление неиспользуемых ресурсов\n' +
+                          '- Zipalign\n' +
+                          '- Упаковка\n' +
+                          'Запуск: optimizer.bat app.apk'
+                },
+                apk_signer: {
+                    title: 'APK Signer v1.2.0',
+                    text: 'Утилита для подписи APK:',
+                    code: 'Типы подписи:\n' +
+                          '- v1 (JAR signing)\n' +
+                          '- v2 (APK Signature Scheme)\n' +
+                          '- v3 (APK Signature Scheme v3)\n' +
+                          'Использование: signer.py -k key.jks app.apk'
+                },
+                apk_installer: {
+                    title: 'APK Installer v4.0.0',
+                    text: 'Массовая установка APK через ADB:',
+                    code: 'Функции:\n' +
+                          '- Установка на несколько устройств\n' +
+                          '- Автоматическое определение устройств\n' +
+                          '- Логирование\n' +
+                          'Запуск: installer.cmd *.apk'
+                }
+            };
+            
+            modalTitle.textContent = info[scriptName].title;
+            modalText.textContent = info[scriptName].text;
+            modalCode.textContent = info[scriptName].code;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').classList.remove('active');
+        }
+
+        // Закрытие модального окна по клику вне его
+        window.onclick = function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target == modal) {
+                modal.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
