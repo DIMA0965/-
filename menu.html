@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>99 НОЧЕЙ В ЛЕСУ 3D | ML Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+        }
+
+        body {
+            background: #0a0c0f;
+            background-image: radial-gradient(circle at 10% 20%, #1a2a1f, #030503);
+            color: #e0e7e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Стилизация скролла */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a241a; }
+        ::-webkit-scrollbar-thumb { background: #5f7a5f; border-radius: 20px; }
+
+        /* Хедер */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: #0f130fe0;
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid #3d5e3d;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #b0ffb0;
+            text-shadow: 0 0 10px #5f9f5f;
+            letter-spacing: 2px;
+        }
+        .logo span {
+            color: #8ba88b;
+            font-weight: 400;
+            font-size: 18px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        #welcome-message {
+            color: #cfefcf;
+            font-weight: 500;
+        }
+        #logout-btn {
+            background: #2a3a2a;
+            border: 1px solid #6f9f6f;
+            color: #d0f0d0;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        #logout-btn:hover {
+            background: #4f6f4f;
+            border-color: #aff0af;
+        }
+
+        /* Герой секция */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #c0ffc0, #7fa07f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px #3f6f3f;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #b0c0b0;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+
+        /* Формы (скрываются после входа) */
+        .auth-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 60px;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        .auth-card {
+            background: #161f16e0;
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 30px;
+            width: 350px;
+            border: 2px solid #3d6b3d;
+            box-shadow: 0 10px 30px #00000080;
+        }
+
+        .auth-card h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #b0f0b0;
+        }
+
+        .auth-card input {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background: #232f23;
+            border: 1px solid #4f7a4f;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .auth-card input:focus {
+            border-color: #9fef9f;
+            box-shadow: 0 0 15px #6faf6f80;
+        }
+
+        .auth-card button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            background: #4f8a4f;
+            color: #020502;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+
+        .auth-card button:hover {
+            background: #7fc07f;
+            box-shadow: 0 0 25px #7fdf7f;
+        }
+
+        .auth-note {
+            text-align: center;
+            margin-top: 15px;
+            color: #9ba89b;
+            font-size: 13px;
+        }
+
+        /* 3D ИГРОВОЙ БЛОК */
+        .game-3d-section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .game-container {
+            background: #0f170f;
+            border-radius: 40px;
+            padding: 30px;
+            border: 3px solid #3f6f3f;
+            box-shadow: 0 30px 40px #000000cc, 0 0 50px #2f5f2f80;
+        }
+
+        .game-container h2 {
+            font-size: 42px;
+            color: #b0f0b0;
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #2f9f2f;
+        }
+
+        .game-description {
+            text-align: center;
+            color: #b0c6b0;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        /* 3D Плеер (эмуляция) */
+        .player-3d {
+            background: #1a261a;
+            border-radius: 30px;
+            padding: 20px;
+            border: 2px solid #5f8f5f;
+        }
+
+        .unity-placeholder {
+            background: #0b130b;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 3px dashed #6fa86f;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .unity-placeholder span {
+            font-size: 100px;
+            filter: drop-shadow(0 0 30px #7fff7f);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.8; transform: scale(1); }
+        }
+
+        .unity-placeholder h3 {
+            font-size: 32px;
+            color: #cfefcf;
+        }
+
+        .unity-placeholder p {
+            color: #9fc09f;
+            max-width: 500px;
+        }
+
+        .btn-3d {
+            background: #3d6b3d;
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 60px;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid #9fef9f;
+            margin-top: 20px;
+        }
+
+        .btn-3d:hover {
+            background: #5f9f5f;
+            transform: scale(1.05);
+            box-shadow: 0 0 40px #8fdf8f;
+        }
+
+        .roblox-link {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .roblox-link a {
+            color: #b0ffb0;
+            font-size: 20px;
+            text-decoration: none;
+            border-bottom: 2px dashed #6f9f6f;
+        }
+
+        /* Карточки особенностей */
+        .features {
+            padding: 40px 60px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .feature-card {
+            background: #1a241ac0;
+            backdrop-filter: blur(4px);
+            border: 2px solid #3f6f3f;
+            border-radius: 30px;
+            padding: 25px;
+            width: 240px;
+            text-align: center;
+        }
+
+        .feature-card .emoji {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #c0efc0;
+        }
+
+        /* Футер */
+        footer {
+            margin-top: 60px;
+            background: #0b130b;
+            padding: 30px 60px;
+            border-top: 3px solid #2f5f2f;
+            text-align: center;
+            color: #7f987f;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">🌲 99 НОЧЕЙ <span>в лесу 3D</span></div>
+    <div class="user-info" id="user-info" style="display: none;">
+        <span id="welcome-message"></span>
+        <button id="logout-btn">Выйти</button>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <h1>ВЫЖИВИ В ЛЕСУ</h1>
+        <p>3D хоррор на выживание. 99 ночей. Тьма. Голоса. И только ты.</p>
+    </section>
+
+    <!-- Формы регистрации/входа -->
+    <section class="auth-section" id="auth-forms">
+        <div class="auth-card">
+            <h2>📝 Регистрация</h2>
+            <input type="text" placeholder="Логин" id="reg-login">
+            <input type="password" placeholder="Пароль" id="reg-password">
+            <button id="register-btn">Создать аккаунт</button>
+            <div class="auth-note">Ты получишь доступ к 3D-лесу</div>
+        </div>
+
+        <div class="auth-card">
+            <h2>🔑 Вход</h2>
+            <input type="text" placeholder="Логин" id="login-login">
+            <input type="password" placeholder="Пароль" id="login-password">
+            <button id="login-btn">Войти</button>
+            <div class="auth-note">Уже выживал здесь? Входи</div>
+        </div>
+    </section>
+
+    <!-- 3D ИГРА -->
+    <section class="game-3d-section">
+        <div class="game-container">
+            <h2>🎮 99 НОЧЕЙ В ЛЕСУ · 3D</h2>
+            <div class="game-description">
+                Полное погружение. Объёмный звук, динамическая смена дня и ночи.
+            </div>
+
+            <div class="player-3d">
+                <div class="unity-placeholder">
+                    <span>🌲👁️</span>
+                    <h3>3D РЕЖИМ ЗАПУЩЕН</h3>
+                    <p>Ты находишься в лесу. Вокруг темнеет. Слышен шёпот...</p>
+                    <!-- Кнопка запуска эмуляции 3D -->
+                    <button class="btn-3d" id="start3dBtn">▶ ЗАЙТИ В ЛЕС (3D)</button>
+                    <p style="margin-top: 20px; font-size: 14px; color: #8fa58f;">*Эмуляция 3D-опыта. Для настоящей игры используй Roblox ниже</p>
+                </div>
+            </div>
+
+            <div class="roblox-link">
+                <a href="https://www.roblox.com/games/3089586216/99-Nights-in-the-Forest" target="_blank" id="forestLink">🔗 ИЛИ ИГРАТЬ В ROBLOX (ОРИГИНАЛ)</a>
+                <p style="color: #7f987f; margin-top: 10px;">Нажми, чтобы открыть официальную страницу Roblox (если игра существует)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Особенности -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="emoji">🌕</div>
+            <h3>99 ночей</h3>
+            <p>С каждым рассветом лес становится злее</p>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">🪓</div>
+            <h3>Крафт оружия</h3>
+            <p>Собирай ветки и камни, защищайся</p>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">👁️</div>
+            <h3>3D Звук</h3>
+            <p>Шаги за спиной. Мурашки по коже.</p>
+        </div>
+        <div class="feature-card">
+            <div class="emoji">🏕️</div>
+            <h3>Кооператив</h3>
+            <p>Выживай с друзьями (soon)</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    © 2025 99 Nights in the Forest 3D | Фан-проект. Неофициальный сайт.
+</footer>
+
+<script>
+    (function() {
+        // ========== СИСТЕМА РЕГИСТРАЦИИ И ВХОДА (localStorage) ==========
+        const STORAGE_KEY = 'forest_users';
+        const CURRENT_USER_KEY = 'forest_current_user';
+
+        // Получить всех пользователей
+        function getUsers() {
+            let users = localStorage.getItem(STORAGE_KEY);
+            return users ? JSON.parse(users) : {}; // { login: password }
+        }
+
+        // Сохранить пользователей
+        function saveUsers(users) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+        }
+
+        // Текущий пользователь
+        function getCurrentUser() {
+            return localStorage.getItem(CURRENT_USER_KEY);
+        }
+
+        function setCurrentUser(login) {
+            if (login) {
+                localStorage.setItem(CURRENT_USER_KEY, login);
+            } else {
+                localStorage.removeItem(CURRENT_USER_KEY);
+            }
+        }
+
+        // Обновление UI в зависимости от авторизации
+        function updateUIBasedOnAuth() {
+            const currentUser = getCurrentUser();
+            const authForms = document.getElementById('auth-forms');
+            const userInfoDiv = document.getElementById('user-info');
+            const welcomeSpan = document.getElementById('welcome-message');
+
+            if (currentUser) {
+                // Пользователь залогинен
+                authForms.classList.add('hidden');
+                userInfoDiv.style.display = 'flex';
+                welcomeSpan.textContent = `👤 ${currentUser}, ты в лесу`;
+            } else {
+                // Не залогинен
+                authForms.classList.remove('hidden');
+                userInfoDiv.style.display = 'none';
+            }
+        }
+
+        // Регистрация
+        document.getElementById('register-btn').addEventListener('click', function() {
+            const login = document.getElementById('reg-login').value.trim();
+            const password = document.getElementById('reg-password').value.trim();
+
+            if (!login || !password) {
+                alert('❌ Заполни все поля, иначе лес тебя заберёт');
+                return;
+            }
+            if (login.length < 3) {
+                alert('❌ Логин должен быть не короче 3 символов');
+                return;
+            }
+            if (password.length < 4) {
+                alert('❌ Пароль минимум 4 символа');
+                return;
+            }
+
+            const users = getUsers();
+            if (users[login]) {
+                alert('❌ Такой выживальщик уже существует! Придумай другой логин.');
+                return;
+            }
+
+            // Сохраняем
+            users[login] = password;
+            saveUsers(users);
+            alert('✅ Ты зарегистрирован в лесу! Теперь войди.');
+            document.getElementById('reg-login').value = '';
+            document.getElementById('reg-password').value = '';
+        });
+
+        // Вход
+        document.getElementById('login-btn').addEventListener('click', function() {
+            const login = document.getElementById('login-login').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+
+            if (!login || !password) {
+                alert('❌ Введи логин и пароль');
+                return;
+            }
+
+            const users = getUsers();
+            if (!users[login]) {
+                alert('❌ Пользователь не найден. Зарегистрируйся.');
+                return;
+            }
+            if (users[login] !== password) {
+                alert('❌ Неверный пароль. Лес не пускает.');
+                return;
+            }
+
+            // Успешный вход
+            setCurrentUser(login);
+            updateUIBasedOnAuth();
+            document.getElementById('login-login').value = '';
+            document.getElementById('login-password').value = '';
+        });
+
+        // Выход
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            setCurrentUser(null);
+            updateUIBasedOnAuth();
+        });
+
+        // При загрузке страницы проверяем, может уже есть сессия
+        updateUIBasedOnAuth();
+
+        // ========== 3D КНОПКА ==========
+        document.getElementById('start3dBtn').addEventListener('click', function() {
+            const currentUser = getCurrentUser();
+            if (!currentUser) {
+                alert('❌ Сначала войди в аккаунт. Лес не впускает незнакомцев.');
+                return;
+            }
+            // Эмуляция 3D эффекта
+            alert('🌲🌲🌲 ТЫ ВОШЁЛ В 3D ЛЕС 🌲🌲🌲\n\nНочь 1. Ты слышишь треск веток. Спрячься в палатку... (это демо-режим)');
+            // Можно изменить текст на странице для большей атмосферы
+            document.querySelector('.unity-placeholder h3').innerText = '⚡ ТЫ В ЛЕСУ. НОЧЬ 1...';
+        });
+
+        // Ссылка на Roblox (динамическая, но пока оставим)
+        let robloxLink = document.getElementById('forestLink');
+        // Если пользователь не залогинен, можно предупредить, но ссылка рабочая
+        robloxLink.addEventListener('click', function(e) {
+            const currentUser = getCurrentUser();
+            if (!currentUser) {
+                e.preventDefault();
+                alert('❌ Войди, чтобы перейти в игру. Это требование леса.');
+                return;
+            }
+            // Если залогинен — пускаем
+            // (просто переходим по ссылке)
+        });
+
+        // Принудительно обновим ссылку на актуальную (игру "99 ночей" ищем по ID, но он может быть неверным. Поиск вручную)
+        // Поскольку точного ID у нас нет, оставим как поисковый запрос.
+        robloxLink.href = "https://www.roblox.com/games/?Keyword=99+forest+night";
+        robloxLink.innerText = "🔗 НАЙТИ 99 НОЧЕЙ В ROBLOX";
+    })();
+</script>
+
+<!-- Подсказка: Сообщения для пользователя -->
+<div style="display: none;">Интерактивная регистрация работает. Данные хранятся в браузере.</div>
+</body>
+</html>

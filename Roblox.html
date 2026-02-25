@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML | Вход в Roblox Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0b0c1e, #020210);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(5, 5, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f0b90b30;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffd966, #f0b90b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .welcome-box {
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .welcome-box h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-box h1 span {
+            color: #f0b90b;
+            text-shadow: 0 0 15px #f0b90b80;
+        }
+
+        .auth-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .auth-card {
+            background: #11122b;
+            padding: 30px;
+            border-radius: 30px;
+            width: 350px;
+            border: 1px solid #2a2c4a;
+        }
+
+        .auth-card h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #f0b90b;
+        }
+
+        .auth-card input {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background: #1e1f33;
+            border: 1px solid #2a2c4a;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .auth-card input:focus {
+            border-color: #f0b90b;
+        }
+
+        .auth-card button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            background: #f0b90b;
+            color: #0b0c1e;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .auth-card button:hover {
+            background: #ffd966;
+            box-shadow: 0 0 20px #f0b90b;
+        }
+
+        .auth-note {
+            text-align: center;
+            margin-top: 15px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .info-message {
+            margin-top: 30px;
+            padding: 15px;
+            background: #1e1f3340;
+            border-radius: 50px;
+            color: #f0b90b;
+            border: 1px dashed #f0b90b;
+        }
+
+        /* Новый блок для приложения */
+        .app-section {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .app-card {
+            background: #11122b;
+            border-radius: 30px;
+            padding: 30px;
+            border: 1px solid #2a2c4a;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .app-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .app-info h3 {
+            font-size: 24px;
+            color: #f0b90b;
+            margin-bottom: 15px;
+        }
+
+        .app-details {
+            background: #1e1f33;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .app-details p {
+            margin: 8px 0;
+            color: #aaa;
+        }
+
+        .app-details span {
+            color: #f0b90b;
+            font-weight: 600;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #f0b90b, #ffd966);
+            color: #0b0c1e;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #f0b90b;
+        }
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #f0b90b, #ff9900);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 800;
+            color: #0b0c1e;
+            box-shadow: 0 10px 30px rgba(240, 185, 11, 0.3);
+        }
+
+        .install-note {
+            margin-top: 10px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #040411;
+            padding: 20px 60px;
+            border-top: 1px solid #f0b90b20;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ML // ROBLOX</div>
+    </header>
+
+    <div class="main-content">
+        <div class="welcome-box">
+            <h1>Войди в <span>ML</span> вселенную</h1>
+            <p>После входа ты попадешь в игровое меню <strong>99 ночей в лесу 3D</strong></p>
+        </div>
+
+        <section class="auth-section">
+            <!-- Регистрация -->
+            <div class="auth-card">
+                <h2>🔐 Регистрация</h2>
+                <input type="text" placeholder="Придумай логин" id="reg-login">
+                <input type="password" placeholder="Придумай пароль" id="reg-pass">
+                <button id="register-btn">Зарегистрироваться</button>
+                <div class="auth-note">После регистрации сразу войди</div>
+            </div>
+
+            <!-- Вход -->
+            <div class="auth-card">
+                <h2>🔑 Вход</h2>
+                <input type="text" placeholder="Твой логин" id="login-login">
+                <input type="password" placeholder="Твой пароль" id="login-pass">
+                <button id="login-btn">Войти в меню</button>
+                <div class="auth-note">Вход в игровой центр</div>
+            </div>
+        </section>
+
+        <!-- Блок с приложением -->
+        <div class="app-section">
+            <div class="app-card">
+                <div class="app-icon">
+                    ML
+                </div>
+                <div class="app-info">
+                    <h3>📱 Скачать наше приложение</h3>
+                    <div class="app-details">
+                        <p><span>Имя:</span> ML Launcher.apk</p>
+                        <p><span>Размер:</span> 8,41 МБ</p>
+                        <p><span>Последнее изменение:</span> 24 февр. 11:23</p>
+                        <p><span>Путь:</span> /Внутреннее хранилище/Download/ML/</p>
+                    </div>
+                    <button class="download-btn" id="downloadApkBtn">📲 Скачать APK</button>
+                    <p class="install-note">⚠️ Разреши установку из неизвестных источников в настройках</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-message" id="info-message">
+            👆 Войди, чтобы открыть 99 ночей в лесу 3D
+        </div>
+    </div>
+
+    <footer>
+        © 2025 ML Community · Неофициальный фан-сайт
+    </footer>
+
+    <script>
+        (function() {
+            // Работаем с localStorage
+            const STORAGE_KEY = 'ml_users';
+            
+            function getUsers() {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            }
+
+            // Кнопка регистрации
+            document.getElementById('register-btn').addEventListener('click', function() {
+                const login = document.getElementById('reg-login').value.trim();
+                const pass = document.getElementById('reg-pass').value.trim();
+
+                if (!login || !pass) {
+                    alert('❌ Заполни все поля');
+                    return;
+                }
+                if (login.length < 3) {
+                    alert('❌ Логин минимум 3 символа');
+                    return;
+                }
+                if (pass.length < 4) {
+                    alert('❌ Пароль минимум 4 символа');
+                    return;
+                }
+
+                const users = getUsers();
+                if (users[login]) {
+                    alert('❌ Такой логин уже есть');
+                    return;
+                }
+
+                users[login] = pass;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+                alert('✅ Регистрация успешна! Теперь войди.');
+                document.getElementById('reg-login').value = '';
+                document.getElementById('reg-pass').value = '';
+            });
+
+            // Кнопка входа
+            document.getElementById('login-btn').addEventListener('click', function() {
+                const login = document.getElementById('login-login').value.trim();
+                const pass = document.getElementById('login-pass').value.trim();
+
+                if (!login || !pass) {
+                    alert('❌ Введи логин и пароль');
+                    return;
+                }
+
+                const users = getUsers();
+                if (!users[login]) {
+                    alert('❌ Пользователь не найден');
+                    return;
+                }
+                if (users[login] !== pass) {
+                    alert('❌ Неверный пароль');
+                    return;
+                }
+
+                localStorage.setItem('ml_current_user', login);
+                document.getElementById('info-message').innerText = '✅ Вход выполнен! Перенаправляем в меню...';
+                
+                setTimeout(() => {
+                    window.location.href = 'загрузки/menu.html';
+                }, 1000);
+            });
+
+            // Функция для скачивания APK
+            function downloadAPK() {
+                // Создаем виртуальную ссылку на APK файл
+                // В реальном проекте здесь должен быть путь к вашему APK файлу
+                const apkUrl = 'загрузки/ApkCreator/Roblox.apk'; // Путь к APK файлу
+                
+                // Создаем временную ссылку для скачивания
+                const link = document.createElement('a');
+                link.href = apkUrl;
+                link.download = 'ML_Launcher.apk'; // Имя файла при скачивании
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Показываем сообщение об установке
+                alert('📱 Скачивание началось!\n\nПосле скачивания:\n1. Открой файл\n2. Разреши установку из неизвестных источников\n3. Установи приложение');
+            }
+
+            // Обработчик для кнопки скачивания
+            document.getElementById('downloadApkBtn').addEventListener('click', downloadAPK);
+
+            // Проверка сессии
+            const currentUser = localStorage.getItem('ml_current_user');
+            if (currentUser) {
+                document.getElementById('info-message').innerHTML = `👋 С возвращением, ${currentUser}! <a href="загрузки/menu.html" style="color: #f0b90b;">Перейти в меню →</a>`;
+            }
+
+            // Для демонстрации - если APK файла нет, покажем предупреждение
+            // В реальном проекте эту часть можно удалить
+            console.log('Сайт готов к установке приложения');
+        })();
+    </script>
+</body>
+</html>
